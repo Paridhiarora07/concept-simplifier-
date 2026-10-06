@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Concept Simplifier</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📖 Concept Simplifier</h1>
+
+        <p class="subtitle">
+            Simplify difficult concepts and analyze the readability of your text
+        </p>
+
+        <form method="POST">
+
+            <textarea
+                name="text"
+                placeholder="Type or paste your text here..."
+                required>{{ text }}</textarea>
+
+            <button type="submit">
+                Simplify Text
+            </button>
+
+        </form>
+
+        {% if result %}
+
+        <div class="result">
+
+            <h2>📊 Readability Analysis</h2>
+
+            <h3>Readability Score: {{ score }}</h3>
+
+            {% if score >= 60 %}
+                <p>This text is relatively easy to read.</p>
+            {% elif score >= 30 %}
+                <p>This text has moderate difficulty.</p>
+            {% else %}
+                <p>This text may be difficult to read.</p>
+            {% endif %}
+
+        </div>
+
+        <div class="result">
+
+            <h2>✨ Simplified Text</h2>
+
+            <p>{{ result }}</p>
+
+        </div>
+
+        <div class="result">
+
+            <h2>📝 Text Statistics</h2>
+
+            <div class="statistics">
+
+                <div class="stat">
+                    <h3>Words</h3>
+                    <p>{{ word_count }}</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Sentences</h3>
+                    <p>{{ sentence_count }}</p>
+                </div>
+
+                <div class="stat">
+                    <h3>Characters</h3>
+                    <p>{{ character_count }}</p>
+                </div>
+
+            </div>
+
+        </div>
+
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
